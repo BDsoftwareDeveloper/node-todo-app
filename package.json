@@ -1,18 +1,25 @@
 {
-  "name": "todo-app",
+  "name": "todo_app_with_auth",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Node.js Todo App with User Authentication and Roles",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"No test specified\" && exit 0"
-},
+  },
   "keywords": [],
-  "author": "",
+  "author": "Saiful Islam",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.3",
-    "express": "^4.21.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.3",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.8.3"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.9"
   }
 }

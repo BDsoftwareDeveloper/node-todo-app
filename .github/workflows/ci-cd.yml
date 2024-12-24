@@ -1,29 +1,50 @@
-name: CI/CD Workflow
+name: Localhost CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build-and-deploy:
+  build-test-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Step 3: Install dependencies and test
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      # Step 4: Log in to Docker Hub
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      # Step 5: Build and push Docker image
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           push: true
           tags: saifulweb2023/node-todo-app:latest
+
+      # Step 6: Deploy locally (on Windows localhost)
+      - name: Deploy on localhost
+        run: |
+          docker pull saifulweb2023/node-todo-app:latest
+          docker stop node-todo-app-app-1 || true
+          docker rm your-app-container || true
+          docker run -d --name node-todo-app-app-1 -p 80:80 saifulweb2023/node-todo-app:latest

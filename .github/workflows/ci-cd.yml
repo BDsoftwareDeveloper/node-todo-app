@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: saifulweb2023/node-todo-app:latest
+          tags: saifulweb2023/node-todo-app-app-1:latest
 
       # Step 6: Deploy locally (on Windows localhost)
       - name: Deploy on localhost

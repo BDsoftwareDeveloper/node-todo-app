@@ -29,7 +29,7 @@ jobs:
 
       - name: Tag latest main image
         run: |
-          docker tag ${{ secrets.DOCKER_USERNAME }}/node-todo-app:dev-${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/node-todo-app:main-latest
+          docker tag ${{ secrets.DOCKER_USERNAME }}/node-todo-app:main-${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/node-todo-app:main-latest
           docker push ${{ secrets.DOCKER_USERNAME }}/node-todo-app:main-latest
 
 # on:
